@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: your-application
+  namespace: argocd
+spec:
+  project: uzapoint-microservices
+  source:
+    repoURL: https://github.com/steve2030/CI-CD-using-Jenkins-and-ArgoCd
+    path: your-application-folder
+    targetRevision: main
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
